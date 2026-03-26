@@ -157,7 +157,7 @@ export default function ExpenseList() {
                   <div className="flex items-center gap-2">
                     <p className="font-medium text-card-foreground truncate">{expense.merchant}</p>
                     {expense.is_duplicate && (
-                      <AlertTriangle className="w-4 h-4 text-warning shrink-0" title="Possible duplicate" />
+                      <span title="Possible duplicate"><AlertTriangle className="w-4 h-4 text-warning shrink-0" /></span>
                     )}
                   </div>
                   <p className="text-xs text-muted-foreground">

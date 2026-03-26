@@ -1,16 +1,48 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import { AuthProvider, useAuth } from '@/hooks/useAuth';
+import AuthPage from '@/pages/AuthPage';
+import DashboardLayout from '@/components/DashboardLayout';
+import DashboardOverview from '@/components/DashboardOverview';
+import ReceiptUpload from '@/components/ReceiptUpload';
+import ExpenseList from '@/components/ExpenseList';
+import AnalyticsView from '@/components/AnalyticsView';
+import BudgetManager from '@/components/BudgetManager';
 
-// IMPORTANT: Fully REPLACE this with your own code
-const PlaceholderIndex = () => {
-  // PLACEHOLDER: Replace this entire return statement with the user's app.
-  // The inline background color is intentionally not part of the design system.
+function AppContent() {
+  const { user, loading } = useAuth();
+  const [activeTab, setActiveTab] = useState('dashboard');
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (!user) return <AuthPage />;
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case 'upload': return <ReceiptUpload />;
+      case 'expenses': return <ExpenseList />;
+      case 'analytics': return <AnalyticsView />;
+      case 'budgets': return <BudgetManager />;
+      default: return <DashboardOverview />;
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center" style={{ backgroundColor: '#fcfbf8' }}>
-      <img data-lovable-blank-page-placeholder="REMOVE_THIS" src="/placeholder.svg" alt="Your app will live here!" />
-    </div>
+    <DashboardLayout activeTab={activeTab} onTabChange={setActiveTab}>
+      {renderContent()}
+    </DashboardLayout>
   );
-};
+}
 
-const Index = PlaceholderIndex;
-
-export default Index;
+export default function Index() {
+  return (
+    <AuthProvider>
+      <AppContent />
+    </AuthProvider>
+  );
+}
