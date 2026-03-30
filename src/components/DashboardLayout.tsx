@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
+import { useTheme } from '@/hooks/useTheme';
 import { 
   LayoutDashboard, Receipt, PieChart, Settings, LogOut, Upload, Menu, X,
-  TrendingUp
+  TrendingUp, Sun, Moon
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
