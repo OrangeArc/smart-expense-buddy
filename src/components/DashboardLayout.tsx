@@ -24,6 +24,7 @@ const navItems = [
 
 export default function DashboardLayout({ children, activeTab, onTabChange }: DashboardLayoutProps) {
   const { signOut, user } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
