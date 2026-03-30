@@ -35,14 +35,14 @@ export default function AuthPage() {
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <div className="w-full max-w-md space-y-8">
         <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-primary mb-4">
-            <Receipt className="w-8 h-8 text-primary-foreground" />
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl gradient-primary mb-4 shadow-lg">
+            <Receipt className="w-8 h-8 text-white" />
           </div>
           <h1 className="font-heading text-3xl font-bold tracking-tight text-foreground">ExpenseAI</h1>
           <p className="text-muted-foreground">Smart expense tracking powered by AI</p>
         </div>
 
-        <Card className="border-border/50 shadow-lg">
+        <Card className="shadow-xl border-border/50">
           <CardHeader className="space-y-1">
             <CardTitle className="font-heading text-2xl">
               {isLogin ? 'Welcome back' : 'Create account'}
@@ -76,7 +76,7 @@ export default function AuthPage() {
                   minLength={6}
                 />
               </div>
-              <Button type="submit" className="w-full" disabled={loading}>
+              <Button type="submit" className="w-full font-semibold" disabled={loading}>
                 {loading ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
                 ) : (
