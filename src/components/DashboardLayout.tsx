@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
+import { useTheme } from '@/hooks/useTheme';
 import { 
   LayoutDashboard, Receipt, PieChart, Settings, LogOut, Upload, Menu, X,
-  TrendingUp
+  TrendingUp, Sun, Moon
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -23,6 +24,7 @@ const navItems = [
 
 export default function DashboardLayout({ children, activeTab, onTabChange }: DashboardLayoutProps) {
   const { signOut, user } = useAuth();
+  const { theme, toggleTheme } = useTheme();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -88,6 +90,11 @@ export default function DashboardLayout({ children, activeTab, onTabChange }: Da
           <h2 className="font-heading text-lg font-semibold text-foreground capitalize">
             {navItems.find(n => n.id === activeTab)?.label || 'Dashboard'}
           </h2>
+          <div className="ml-auto">
+            <Button variant="ghost" size="icon" onClick={toggleTheme} className="text-foreground">
+              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </Button>
+          </div>
         </header>
         <div className="p-4 lg:p-8">
           {children}
