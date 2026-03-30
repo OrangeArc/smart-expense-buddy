@@ -6,80 +6,97 @@
 
 @layer base {
   :root {
-    --background: 150 15% 96%;
-    --foreground: 160 25% 10%;
+    /* Light Mode — Clean FinTech */
+    --background: 210 40% 98%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 160 25% 10%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 160 25% 10%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 145 80% 32%;
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 150 12% 91%;
-    --secondary-foreground: 160 20% 15%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 215 25% 27%;
 
-    --muted: 150 10% 93%;
-    --muted-foreground: 160 8% 45%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
 
-    --accent: 145 70% 36%;
+    --accent: 142 71% 45%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --success: 145 70% 36%;
+    --success: 142 71% 45%;
     --success-foreground: 0 0% 100%;
 
     --warning: 38 92% 50%;
     --warning-foreground: 38 95% 14%;
 
-    --border: 150 12% 88%;
-    --input: 150 12% 88%;
-    --ring: 145 80% 32%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
 
     --radius: 0.75rem;
 
-    --sidebar-background: 160 20% 8%;
-    --sidebar-foreground: 150 10% 85%;
-    --sidebar-primary: 145 80% 42%;
+    --sidebar-background: 222 47% 11%;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 160 18% 14%;
-    --sidebar-accent-foreground: 150 10% 85%;
-    --sidebar-border: 160 15% 16%;
-    --sidebar-ring: 145 80% 42%;
+    --sidebar-accent: 217 33% 17%;
+    --sidebar-accent-foreground: 210 40% 90%;
+    --sidebar-border: 217 33% 17%;
+    --sidebar-ring: 217 91% 60%;
   }
 
   .dark {
-    --background: 160 20% 4%;
-    --foreground: 150 10% 92%;
-    --card: 160 18% 7%;
-    --card-foreground: 150 10% 92%;
-    --popover: 160 18% 7%;
-    --popover-foreground: 150 10% 92%;
-    --primary: 145 80% 42%;
-    --primary-foreground: 160 30% 4%;
-    --secondary: 160 15% 12%;
-    --secondary-foreground: 150 10% 85%;
-    --muted: 160 12% 10%;
-    --muted-foreground: 150 8% 50%;
-    --accent: 145 80% 42%;
-    --accent-foreground: 160 30% 4%;
+    /* Dark Mode — Premium FinTech */
+    --background: 224 71% 4%;
+    --foreground: 220 13% 91%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 220 13% 91%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 220 13% 91%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 214 32% 91%;
+
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 160 84% 39%;
+    --accent-foreground: 0 0% 100%;
+
     --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 100%;
-    --border: 160 12% 14%;
-    --input: 160 12% 14%;
-    --ring: 145 80% 42%;
-    --sidebar-background: 160 25% 3%;
-    --sidebar-foreground: 150 10% 85%;
-    --sidebar-primary: 145 80% 42%;
-    --sidebar-primary-foreground: 160 30% 4%;
-    --sidebar-accent: 160 18% 10%;
-    --sidebar-accent-foreground: 150 10% 85%;
-    --sidebar-border: 160 15% 12%;
-    --sidebar-ring: 145 80% 42%;
+
+    --success: 160 84% 39%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 38 95% 14%;
+
+    --border: 215 28% 17%;
+    --input: 215 28% 17%;
+    --ring: 217 91% 60%;
+
+    --sidebar-background: 224 71% 3%;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 217 33% 12%;
+    --sidebar-accent-foreground: 210 40% 90%;
+    --sidebar-border: 215 28% 14%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 
@@ -89,12 +106,11 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-    font-family: var(--font-body);
+    @apply bg-background text-foreground font-body;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
+    font-family: 'Space Grotesk', sans-serif;
   }
 }
 
@@ -103,11 +119,35 @@
     @apply bg-card rounded-xl border p-6 shadow-sm transition-all duration-200 hover:shadow-md;
   }
 
+  .dark .stat-card {
+    box-shadow: 0 0 0 1px hsl(215 28% 17%), 0 4px 16px -4px rgba(0, 0, 0, 0.4);
+  }
+
+  .stat-card:hover {
+    transform: translateY(-1px);
+  }
+
   .gradient-primary {
-    background: linear-gradient(135deg, hsl(145 80% 35%), hsl(145 80% 48%));
+    background: linear-gradient(135deg, hsl(217 91% 55%), hsl(217 91% 65%));
   }
 
   .gradient-accent {
-    background: linear-gradient(135deg, hsl(145 80% 42%), hsl(160 70% 38%));
+    background: linear-gradient(135deg, hsl(142 71% 45%), hsl(160 84% 39%));
+  }
+
+  /* Dark mode glow effects for interactive elements */
+  .dark .glow-primary {
+    box-shadow: 0 0 20px -5px hsl(217 91% 60% / 0.3);
+  }
+
+  .dark .glow-accent {
+    box-shadow: 0 0 20px -5px hsl(160 84% 39% / 0.3);
+  }
+
+  /* Card glass effect for dark mode */
+  .dark .glass-card {
+    background: hsl(222 47% 11% / 0.8);
+    backdrop-filter: blur(12px);
+    border: 1px solid hsl(215 28% 20%);
   }
 }

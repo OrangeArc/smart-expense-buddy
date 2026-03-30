@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '@/hooks/useAuth';
 import { useTheme } from '@/hooks/useTheme';
 import { 
-  LayoutDashboard, Receipt, PieChart, Settings, LogOut, Upload, Menu, X,
+  LayoutDashboard, Receipt, PieChart, LogOut, Upload, Menu, X,
   TrendingUp, Sun, Moon
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -31,7 +31,7 @@ export default function DashboardLayout({ children, activeTab, onTabChange }: Da
     <div className="min-h-screen bg-background flex">
       {/* Mobile overlay */}
       {sidebarOpen && (
-        <div className="fixed inset-0 bg-foreground/20 z-40 lg:hidden" onClick={() => setSidebarOpen(false)} />
+        <div className="fixed inset-0 bg-foreground/20 backdrop-blur-sm z-40 lg:hidden" onClick={() => setSidebarOpen(false)} />
       )}
 
       {/* Sidebar */}
@@ -40,25 +40,25 @@ export default function DashboardLayout({ children, activeTab, onTabChange }: Da
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         <div className="p-6 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center">
-            <Receipt className="w-5 h-5 text-primary-foreground" />
+          <div className="w-10 h-10 rounded-xl gradient-primary flex items-center justify-center shadow-lg">
+            <Receipt className="w-5 h-5 text-white" />
           </div>
-          <span className="font-heading text-xl font-bold text-sidebar-foreground">ExpenseAI</span>
+          <span className="font-heading text-xl font-bold text-sidebar-foreground tracking-tight">ExpenseAI</span>
           <button onClick={() => setSidebarOpen(false)} className="lg:hidden ml-auto text-sidebar-foreground">
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        <nav className="flex-1 px-3 space-y-1">
+        <nav className="flex-1 px-3 space-y-1 mt-2">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => { onTabChange(item.id); setSidebarOpen(false); }}
               className={cn(
-                "w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-colors",
+                "w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-150",
                 activeTab === item.id
-                  ? "bg-sidebar-accent text-sidebar-primary"
-                  : "text-sidebar-foreground/70 hover:bg-sidebar-accent/50 hover:text-sidebar-foreground"
+                  ? "bg-sidebar-primary/15 text-sidebar-primary shadow-sm"
+                  : "text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-foreground"
               )}
             >
               <item.icon className="w-5 h-5" />
@@ -68,12 +68,12 @@ export default function DashboardLayout({ children, activeTab, onTabChange }: Da
         </nav>
 
         <div className="p-4 border-t border-sidebar-border">
-          <div className="text-xs text-sidebar-foreground/50 mb-2 truncate">{user?.email}</div>
+          <div className="text-xs text-sidebar-foreground/40 mb-3 truncate font-medium">{user?.email}</div>
           <Button
             variant="ghost"
             size="sm"
             onClick={signOut}
-            className="w-full justify-start text-sidebar-foreground/70 hover:text-sidebar-foreground hover:bg-sidebar-accent/50"
+            className="w-full justify-start text-sidebar-foreground/60 hover:text-sidebar-foreground hover:bg-sidebar-accent"
           >
             <LogOut className="w-4 h-4 mr-2" />
             Sign Out
@@ -83,16 +83,21 @@ export default function DashboardLayout({ children, activeTab, onTabChange }: Da
 
       {/* Main content */}
       <main className="flex-1 min-w-0">
-        <header className="sticky top-0 z-30 bg-background/80 backdrop-blur-sm border-b border-border px-4 lg:px-8 h-16 flex items-center">
+        <header className="sticky top-0 z-30 bg-background/80 backdrop-blur-md border-b border-border px-4 lg:px-8 h-16 flex items-center">
           <button onClick={() => setSidebarOpen(true)} className="lg:hidden mr-4 text-foreground">
             <Menu className="w-6 h-6" />
           </button>
-          <h2 className="font-heading text-lg font-semibold text-foreground capitalize">
+          <h2 className="font-heading text-lg font-semibold text-foreground capitalize tracking-tight">
             {navItems.find(n => n.id === activeTab)?.label || 'Dashboard'}
           </h2>
           <div className="ml-auto">
-            <Button variant="ghost" size="icon" onClick={toggleTheme} className="text-foreground">
-              {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            <Button
+              variant="outline"
+              size="icon"
+              onClick={toggleTheme}
+              className="rounded-full w-9 h-9 border-border hover:bg-muted"
+            >
+              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </Button>
           </div>
         </header>
